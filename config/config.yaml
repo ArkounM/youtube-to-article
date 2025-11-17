@@ -7,6 +7,14 @@ article:
   style: "informative"
   target_word_count: 1500
 
+documentation:
+  style: "technical"
+  image_subfolder: "default"
+  create_md_files: true
+  generate_sidebar_index: true
+  max_pages: 10
+  max_moments_per_page: 5
+
 frames:
   format: "jpg"
   quality: 85
