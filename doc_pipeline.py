@@ -106,7 +106,7 @@ def run_doc_pipeline(
     }
 
     print("="*70)
-    safe_print("📚 Documentation Pipeline (Claude Code Edition)")
+    safe_print("Documentation Pipeline (Claude Code Edition)")
     print("="*70)
     print(f"Input: {input_source}")
     print(f"Skip cache: {skip_cache}")
@@ -115,16 +115,16 @@ def run_doc_pipeline(
     try:
         # Step 1: Download/load video
         if input_source.startswith(('http://', 'https://', 'www.')):
-            safe_print("📥 STEP 1: Downloading video...")
+            safe_print("STEP 1: Downloading video...")
         else:
-            safe_print("📥 STEP 1: Loading local video...")
+            safe_print("STEP 1: Loading local video...")
         print("-" * 70)
         video_metadata = download_video(input_source, skip_cache=skip_cache)
         results['video_metadata'] = video_metadata
         print()
 
         # Step 2: Transcribe
-        safe_print("🎤 STEP 2: Transcribing video...")
+        safe_print("STEP 2: Transcribing video...")
         print("-" * 70)
         doc_config = config.get('documentation', {})
         transcript_data = transcribe_video(
@@ -137,7 +137,7 @@ def run_doc_pipeline(
         print()
 
         # Step 3: Create documentation generation prompt
-        safe_print("📝 STEP 3: Creating documentation generation prompt...")
+        safe_print("STEP 3: Creating documentation generation prompt...")
         print("-" * 70)
         prompt_file = create_doc_generation_prompt(
             transcript_data,
@@ -148,22 +148,22 @@ def run_doc_pipeline(
         print()
 
         # Save results
-        safe_print("💾 Saving pipeline results...")
+        safe_print("Saving pipeline results...")
         print("-" * 70)
         results_path = save_pipeline_results(results)
         results['results_path'] = str(results_path)
-        safe_print(f"✓ Results saved: {results_path}\n")
+        safe_print(f"[OK] Results saved: {results_path}\n")
 
         # Final summary and instructions
         results['status'] = 'ready_for_generation'
         print("="*70)
-        safe_print("✅ Documentation pipeline preparation complete!")
+        safe_print("[OK] Documentation pipeline preparation complete!")
         print("="*70)
-        safe_print(f"📺 Video: {results['video_metadata']['title']}")
-        safe_print(f"🎤 Transcript: {transcript_data}")
-        safe_print(f"📝 Prompt file: {prompt_file}")
+        safe_print(f"Video: {results['video_metadata']['title']}")
+        safe_print(f"Transcript: {transcript_data}")
+        safe_print(f"Prompt file: {prompt_file}")
         print("="*70)
-        safe_print("\n🤖 NEXT STEP: Generate documentation using Claude Code")
+        safe_print("\nNEXT STEP: Generate documentation using Claude Code")
         print("-" * 70)
         print(f"Run this command:\n")
         print(f"  python generate_documentation.py \"{prompt_file}\"\n")
@@ -176,7 +176,7 @@ def run_doc_pipeline(
     except Exception as e:
         results['status'] = 'failed'
         results['error'] = str(e)
-        print(f"\n❌ Pipeline failed: {str(e)}")
+        print(f"\n[ERROR] Pipeline failed: {str(e)}")
         raise
 
 
@@ -250,15 +250,15 @@ After running this pipeline:
             output_path = Path(args.output_json)
             with open(output_path, 'w', encoding='utf-8') as f:
                 json.dump(results, f, indent=2, ensure_ascii=False)
-            safe_print(f"\n💾 Results also saved to: {output_path}")
+            safe_print(f"\n[OK] Results also saved to: {output_path}")
 
         sys.exit(0)
 
     except KeyboardInterrupt:
-        safe_print("\n\n⚠️  Pipeline interrupted by user")
+        safe_print("\n\n[WARNING] Pipeline interrupted by user")
         sys.exit(1)
     except Exception as e:
-        safe_print(f"\n❌ Error: {str(e)}")
+        safe_print(f"\n[ERROR] Error: {str(e)}")
         sys.exit(1)
 
 

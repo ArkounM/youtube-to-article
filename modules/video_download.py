@@ -98,11 +98,11 @@ def load_local_video(
 
     # Copy file to cache if not already there
     if not cached_video.exists():
-        print(f"📋 Loading local video: {file_path.name}")
+        print(f"Loading local video: {file_path.name}")
         shutil.copy2(file_path, cached_video)
-        print(f"✓ Video copied to cache: {cached_video}")
+        print(f"[OK] Video copied to cache: {cached_video}")
     else:
-        print(f"✓ Using cached local video: {video_id}")
+        print(f"[OK] Using cached local video: {video_id}")
 
     # Prepare metadata
     metadata = {
@@ -123,7 +123,7 @@ def load_local_video(
     with open(cached_metadata, 'w', encoding='utf-8') as f:
         json.dump(metadata, f, indent=2, ensure_ascii=False)
 
-    print(f"✓ Loaded: {metadata['title']}")
+    print(f"[OK] Loaded: {metadata['title']}")
 
     return metadata
 
@@ -170,12 +170,12 @@ def download_video(
     cached_metadata = cache_dir / f"{video_id}.json"
 
     if not skip_cache and cached_video.exists() and cached_metadata.exists():
-        print(f"✓ Using cached video: {video_id}")
+        print(f"[OK] Using cached video: {video_id}")
         with open(cached_metadata, 'r', encoding='utf-8') as f:
             metadata = json.load(f)
         return metadata
 
-    print(f"⬇ Downloading video: {video_id}")
+    print(f"Downloading video: {video_id}")
 
     # Configure yt-dlp options
     ydl_opts = {
@@ -210,7 +210,7 @@ def download_video(
             with open(cached_metadata, 'w', encoding='utf-8') as f:
                 json.dump(metadata, f, indent=2, ensure_ascii=False)
 
-            print(f"✓ Downloaded: {metadata['title']}")
+            print(f"[OK] Downloaded: {metadata['title']}")
             print(f"  Duration: {metadata['duration']} seconds")
 
             return metadata

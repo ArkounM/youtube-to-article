@@ -36,10 +36,10 @@ def extract_audio(
     audio_path = audio_dir / f"{video_path.stem}.{audio_format}"
 
     if audio_path.exists():
-        print(f"✓ Using cached audio: {audio_path.name}")
+        print(f"[OK] Using cached audio: {audio_path.name}")
         return audio_path
 
-    print(f"🎵 Extracting audio from video...")
+    print(f"Extracting audio from video...")
 
     try:
         # Use ffmpeg to extract audio
@@ -61,7 +61,7 @@ def extract_audio(
             check=True
         )
 
-        print(f"✓ Audio extracted: {audio_path.name}")
+        print(f"[OK] Audio extracted: {audio_path.name}")
         return audio_path
 
     except subprocess.CalledProcessError as e:
@@ -121,22 +121,22 @@ def transcribe_video(
 
     # Check cache
     if not skip_cache and transcript_file.exists():
-        print(f"✓ Using cached transcript: {video_id}")
+        print(f"[OK] Using cached transcript: {video_id}")
         with open(transcript_file, 'r', encoding='utf-8') as f:
             return json.load(f)
 
-    print(f"🎤 Transcribing video with Whisper ({model_size} model)...")
+    print(f"Transcribing video with Whisper ({model_size} model)...")
 
     try:
         # Extract audio
         audio_path = extract_audio(video_path)
 
         # Load Whisper model
-        print(f"📥 Loading Whisper model: {model_size}")
+        print(f"Loading Whisper model: {model_size}")
         model = whisper.load_model(model_size)
 
         # Transcribe
-        print(f"🔄 Transcribing (this may take a few minutes)...")
+        print(f"Transcribing (this may take a few minutes)...")
         result = model.transcribe(
             str(audio_path),
             language=language,
@@ -168,7 +168,7 @@ def transcribe_video(
         with open(transcript_file, 'w', encoding='utf-8') as f:
             json.dump(transcript_data, f, indent=2, ensure_ascii=False)
 
-        print(f"✓ Transcription complete!")
+        print(f"[OK] Transcription complete!")
         print(f"  Language: {transcript_data['language']}")
         print(f"  Duration: {transcript_data['duration']:.1f} seconds")
         print(f"  Segments: {transcript_data['segment_count']}")

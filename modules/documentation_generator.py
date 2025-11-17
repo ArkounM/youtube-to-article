@@ -80,7 +80,7 @@ You are tasked with converting a YouTube video transcript into a comprehensive D
 
 4. **Identify 3-5 key moments per page** where screenshots/frames would enhance documentation
    - For each moment, provide: timestamp (MM:SS), description, and caption
-   - Images should be referenced as: ![Description](/img/{subfolder}/image-name.png)
+   - Images should be referenced as: ![Description](/img/{config.get('image_subfolder', 'default')}/image-name.png)
 
 5. **Example page structure:**
 
@@ -189,7 +189,7 @@ After reading this file, execute the following:
     with open(prompt_path, 'w', encoding='utf-8') as f:
         f.write(prompt_content)
 
-    print(f"✓ Documentation generation prompt created: {prompt_path}")
+    print(f"[OK] Documentation generation prompt created: {prompt_path}")
 
     return prompt_path
 
@@ -252,7 +252,7 @@ def save_documentation_structure(
                 f.write(content)
 
             created_files[page_id] = md_path
-            print(f"✓ Documentation page created: {md_path}")
+            print(f"[OK] Documentation page created: {md_path}")
 
     return created_files
 
@@ -320,7 +320,7 @@ def generate_documentation_index(
     with open(category_path, 'w', encoding='utf-8') as f:
         json.dump(category_data, f, indent=2, ensure_ascii=False)
 
-    print(f"✓ Docusaurus category index created: {category_path}")
+    print(f"[OK] Docusaurus category index created: {category_path}")
 
     return category_path
 
