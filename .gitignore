@@ -1,0 +1,54 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Cache and temporary files
+cache
+.cache/
+.tmp/
+tmp/
+temp/
+*.tmp
+*.temp
+nul
+output
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Node.js (if applicable)
+node_modules/
+.npm
+.node_repl_history
+npm-debug.log*
+
+# Python (if applicable)
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Misc
+.DS_Store
+*.log
+
+# Claude-related files
+.claude/
+claude.json
+claude.log

@@ -1,0 +1,15 @@
+# YouTube to Article Pipeline Dependencies
+
+# AI and ML
+openai-whisper>=20231117
+
+# Video processing
+yt-dlp>=2024.0.0
+
+# Configuration and utilities
+pyyaml>=6.0
+requests>=2.31.0
+
+# Note: ffmpeg must be installed separately on your system
+# Download from: https://ffmpeg.org/download.html
+# Make sure ffmpeg is available in your system PATH

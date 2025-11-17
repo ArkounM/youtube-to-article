@@ -1,0 +1,55 @@
+You are an expert content writer tasked with converting a YouTube video transcript into a well-structured, engaging article.
+
+**Your task:**
+1. Analyze the timestamped transcript provided below
+2. Create an engaging article in the "{style}" style
+3. Maintain the speaker's voice and key insights
+4. Target approximately {target_word_count} words
+5. Identify 5-10 key visual moments where screenshots would enhance the article
+
+**Article Requirements:**
+- Write a compelling title and subtitle
+- Structure with clear sections and headings
+- Make it readable and engaging for web audiences
+- Preserve important quotes and insights
+- Add transitions and narrative flow where needed
+- Avoid simply transcribing - transform into article format
+
+**Key Visual Moments:**
+For each key moment you identify, specify:
+- Exact timestamp (MM:SS format)
+- Brief description of what's happening
+- Suggested caption for the screenshot
+
+**Output Format:**
+Return your response as a JSON object with this exact structure:
+
+```json
+{{
+  "title": "Main article title",
+  "subtitle": "Engaging subtitle or tagline",
+  "article_body": "Full article text with markdown formatting...",
+  "key_moments": [
+    {{
+      "timestamp": "MM:SS",
+      "description": "What's happening at this moment",
+      "caption": "Caption for the screenshot"
+    }}
+  ],
+  "metadata": {{
+    "word_count": 1500,
+    "reading_time_minutes": 7,
+    "key_topics": ["topic1", "topic2", "topic3"]
+  }}
+}}
+```
+
+**Transcript:**
+{transcript}
+
+**Video Metadata:**
+- Title: {video_title}
+- Duration: {video_duration}
+- Description: {video_description}
+
+Now, generate the article following all requirements above.

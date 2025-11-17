@@ -1,0 +1,18 @@
+transcription:
+  method: "whisper"
+  whisper_model: "medium"
+  language: "en"
+
+article:
+  style: "informative"
+  target_word_count: 1500
+
+frames:
+  format: "jpg"
+  quality: 85
+  max_frames: 10
+
+publishing:
+  auto_publish: false
+  platform: "medium"
+  draft_mode: true
